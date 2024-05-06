@@ -1,45 +1,38 @@
 import tkinter as tk
+from tkinter import ttk
 
-def create_gui(root):
-    root.geometry("400x350")
-    #root.minsize(300,300)
-    root.title("My first GUI")
+def create_design(window):
+    window.geometry("500x550")
+    window.title("My first GUI for a SUDOKU")
+# create main frame
+    main_frame = ttk.Frame(window)
+    main_frame.pack()
 
-    label = tk.Label(root, text="Sudoku", font=('Arial',15))
-    label.pack(padx=10, pady=10)
+# create subframe for the label + place it in main_frame(master)
+    label_frame = ttk.Frame(main_frame)
+    label_frame.pack()
 
-    textbox = tk.Text(root, width=40, height=10, font=('Arial',12))
-    textbox.pack(pady=10)
+# pack the label inside the label_frame(master)
+    label = tk.Label(label_frame, text="SUDOKU", font=('Arial',15))
+    label.pack(pady=20)
 
-    buttonframe = tk.Frame(root)
-    buttonframe.columnconfigure(0, weight=1)
-    buttonframe.columnconfigure(1, weight=1)
-    buttonframe.columnconfigure(2, weight=1)
+# create a subframe for the grid frames
+    grid_frame = ttk.Frame(main_frame)
+    grid_frame.pack()
 
-    btn1 = tk.Button(buttonframe, text="1", font=('Arial', 10))
-    btn1.grid(row=0, column=0, sticky="nsew")
+# create gird frames inside the grid frame(master)   
+    for i in range(3):
+        for j in range(3):
+            frame = ttk.Frame(grid_frame, width=150, height=150, relief=tk.GROOVE)
+            frame.grid(row=i, column=j)
 
-    btn2 = tk.Button(buttonframe, text="2", font=('Arial', 10))
-    btn2.grid(row=0, column=1, sticky="nsew")
 
-    btn3 = tk.Button(buttonframe, text="3", font=('Arial', 10))
-    btn3.grid(row=0, column=2, sticky="nsew")
+    
 
-    btn4 = tk.Button(buttonframe, text="4", font=('Arial', 10))
-    btn4.grid(row=1, column=0, sticky="nsew")
-
-    btn5 = tk.Button(buttonframe, text="5", font=('Arial', 10))
-    btn5.grid(row=1, column=1, sticky="nsew")
-
-    btn6 = tk.Button(buttonframe, text="6", font=('Arial', 10))
-    btn6.grid(row=1, column=2, sticky="nsew")
-
-    buttonframe.pack(fill='x') #stretch to the x dimension
-
-    button = tk.Button(root, text="Clikea", font=('Arial', 12))
-    button.pack(pady=10)
 
 if __name__=="__main__":
-    root = tk.Tk()
-    create_gui(root)
-    root.mainloop()
+    window = tk.Tk()
+    create_design(window)
+    window.mainloop()
+    
+
