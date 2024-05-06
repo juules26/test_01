@@ -55,6 +55,7 @@ def create_design(window):
     grid_frame = ttk.Frame(main_frame)
     grid_frame.pack()
 
+    
 # create gird frames inside the grid frame(master)   
     for i in range(3):
         for j in range(3):
@@ -69,6 +70,31 @@ def create_design(window):
                     vlcm = (window.register(validate_number), "%P")
                     num_entry.configure(validate="key",validatecommand=vlcm)
                     num_entry.config(insertbackground=background_color)
+    def clear_and_hint(sure):
+        pass
+    # Hint button
+    button_hint = tk.Button(
+        main_frame,
+        text="hint",
+        background= "white",
+        foreground="Black",
+        activebackground="yellow",
+        activeforeground="black",
+        width=5
+        )
+    button_hint.pack(pady=5,side="left")
+# clear button    
+    button_clear = tk.Button(
+        main_frame,
+        text="clear",
+        background= "white",
+        foreground="Black",
+        activebackground="red",
+        activeforeground="black",
+        width=5
+        )
+    button_clear.pack(pady=5,side="right")
+
 
 if __name__=="__main__":
     window = tk.Tk()
