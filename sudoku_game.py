@@ -1,6 +1,9 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, Toplevel
 
+def correct_number():
+    
+    pass
 def validate_number(number): # Just 1 digit number can be added
     return len(number)<=1
 
@@ -70,7 +73,28 @@ def create_design(window):
                     vlcm = (window.register(validate_number), "%P")
                     num_entry.configure(validate="key",validatecommand=vlcm)
                     num_entry.config(insertbackground=background_color)
-    def clear_and_hint(sure):
+                    num_entry.insert(y, correct_number())    
+    def choice(option):
+        if option == "Not today":
+            warning_pop.destroy()
+
+    def clear_and_hint():
+        global warning_pop
+        warning_pop=Toplevel(window)
+        warning_pop.title("Warning")
+        warning_pop.geometry("250x100")
+
+        pop_label = tk.Label(warning_pop, text="Are you sure?",font=("Helvetica",12))
+        pop_label.pack(pady=5)
+
+        pop_frame = tk.Frame(warning_pop)
+        pop_frame.pack()
+
+        yes = tk.Button(pop_frame,text="Yes",font=("Helvetica",12))#will add command when game logic function created
+        yes.grid(padx=5, pady=10, row=0, column=1)
+        no = tk.Button(pop_frame,text="Not today",font=("Helvetica",12), command=lambda: choice("Not today"))
+        no.grid(padx=5, pady=10,row=0,column=2)
+
         pass
     # Hint button
     button_hint = tk.Button(
@@ -80,7 +104,8 @@ def create_design(window):
         foreground="Black",
         activebackground="yellow",
         activeforeground="black",
-        width=5
+        width=5,
+        command= clear_and_hint
         )
     button_hint.pack(pady=5,side="left")
 # clear button    
@@ -91,10 +116,10 @@ def create_design(window):
         foreground="Black",
         activebackground="red",
         activeforeground="black",
-        width=5
+        width=5,
+        command= clear_and_hint
         )
     button_clear.pack(pady=5,side="right")
-
 
 if __name__=="__main__":
     window = tk.Tk()
