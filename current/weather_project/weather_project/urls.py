@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# In urls.py
+from django.core.wsgi import get_wsgi_application
 
 urlpatterns = [
     path('admin/', admin.site.urls),
